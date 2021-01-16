@@ -7,71 +7,47 @@
 #include <iostream>
 #include <array>
 
-
-int oddIndices(float (&list_U)) {
+template<size_t N>
+std::array<int, 10> odd_indices(std::array<int, N> input_array) {
     // This program returns the odd numbers in a list
 
-    int list2 = [];
-    int count = 0;
-    int loopCounter = 0;
+    std::array<int, 10> returned_array;
+    int loop_counter = 0;
 
     // process
-    for (single_element in listU) {
-        if (loop_counter % 2 == 1)
-            total += array_2D[rowElement][columnElement];
+    for (int single_element : input_array) {
+        if (loop_counter % 2 == 1) {
+            returned_array[loop_counter] = single_element;
+        }
+
+        loop_counter++;
     }
-    for single_element in list_U:
-        if loop_counter % 2 == 1:
-            list2.append(single_element)
-        loop_counter += 1
-    return list2;
+    return returned_array;
 }
 
 
 int main() {
     // This program returns the odd numbers in a list
 
-    // variables
-    std::string amountString;
-    int amount;
-    std::string numberString;
+    const int AMOUNT = 10;
     int number;
     int loop_counter = 0;
-    float list_U = [];
-
-    // creating 2D array
-    while (true) {
-        std::cout << "Enter how many numbers you will use: ";
-        std::cin >> amountString;
-        std::cout << "" << std::endl;
+    std::string number_string;
+    std::array<int, 10> input_array;
+    std::array<int, 10> returned_array;
 
 
-        try {
-            amount = std::stof(amountString);
-            if (amount < 0) {
-                throw std::invalid_argument("This wasn't an integer");
-            }
-
-            break;
-        } catch (std::invalid_argument) {
-                // output
-                std::cout << "That was not a valid integer" << std::endl;
-        }
-    }
-
-    while (loop_counter < amount) {
-        loop_counter = loop_counter + 1;
-
+    for (int loop_counter = 0; loop_counter < AMOUNT; loop_counter++) {
         while (true) {
-                // input
-                std::cout << "Enter a chosen number: ";
-                std::cin >> numberString;
+            // input
+            std::cout << "Enter a chosen number: ";
+            std::cin >> number_string;
             try {
-                number = std::stof(numberString);
+                number = std::stoi(number_string);
                 if (number < 0) {
                     throw std::invalid_argument("This wasn't an integer");
                 }
-
+                input_array[loop_counter] = number;
                 break;
             } catch (std::invalid_argument) {
                 // output
@@ -80,11 +56,13 @@ int main() {
         }
     }
 
+    returned_array = odd_indices(input_array);
 
-    list2 = odd_indices(list_U);
+    for (int single_element : returned_array) {
+        if (loop_counter % 2 == 1) {
+            std::cout << returned_array[loop_counter] << ", ";
+        }
 
-    std::cout << "" << std::endl;
-    std::cout << listU << std::endl;
-    std::cout << "The odd elements in the list are: {0} " << list2
-              << std::endl;
+        loop_counter++;
+    }
 }
